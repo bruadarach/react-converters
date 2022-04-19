@@ -1,0 +1,50 @@
+.MinutesToHours{}
+
+label {
+    display:inline-block; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #555;
+    display:block;
+    margin-bottom: 3px;
+}
+
+input {
+    width: 210px;
+    height: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    cursor:pointer;
+    border: 2px solid lightsteelblue;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: lemonchiffon;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 106px;
+    height: 40px;
+    padding: 10px;
+    margin: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border:0;
+    color: #555;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+button:hover{
+   background-color: blanchedalmond;
+}
+
+button:disabled, input:disabled {
+    cursor: not-allowed;
+    background-color: lightgrey;
+    border-color: lightgrey;
+}
+
+hr {
+    border-color:aliceblue
+}
