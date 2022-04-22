@@ -3,7 +3,9 @@ import './App.css';
 import Converter from './Converter'
 import PropTypes from 'prop-types'
 
-Converter.propTypes = {
+const MemorizedConverter = React.memo(Converter)
+
+MemorizedConverter.propTypes = {
   htmlFor1: PropTypes.string.isRequired,
   text1: PropTypes.string.isRequired,
   id1: PropTypes.string.isRequired,
@@ -44,7 +46,6 @@ function App() {
     setFlipped((current) => !current);
   }
 
-  //const MemorizedConverter = React.memo(Converter)
 
   return(
 
@@ -61,8 +62,8 @@ function App() {
       </select>
       <div>
         {index==="0" ? "Please select your unit" : null}
-        {index==="1" ? <Converter htmlFor1="minutes" text1="Minutes" id1="minutes" placeholder1="Minutes" value1={flipped? state*60: state} htmlFor2="hours" text2="Hours" id2="hours" placeholder2="Hours" value2={flipped? state: state/60} onChangeUpdate={onChangeUpdate} onReset={onReset} onFlip={onFlip} disabled1={flipped} disabled2={!flipped} onFlipText={flipped? "Turn Back": "Flip"}/> : null}
-        {index==="2" ? <Converter htmlFor1="km" text1="Km" id1="km" placeholder1="Km" value1={flipped? (state/0.6214).toFixed(4) : state} htmlFor2="miles" text2="Miles" id2="miles" placeholder2="Miles" value2={flipped? state: (state*0.6214).toFixed(4)} onChangeUpdate={onChangeUpdate} onReset={onReset} onFlip={onFlip} disabled1={flipped} disabled2={!flipped} onFlipText={flipped? "Turn Back": "Flip"}/> : null}
+        {index==="1" ? <MemorizedConverter htmlFor1="minutes" text1="Minutes" id1="minutes" placeholder1="Minutes" value1={flipped? state*60: state} htmlFor2="hours" text2="Hours" id2="hours" placeholder2="Hours" value2={flipped? state: state/60} onChangeUpdate={onChangeUpdate} onReset={onReset} onFlip={onFlip} disabled1={flipped} disabled2={!flipped} onFlipText={flipped? "Turn Back": "Flip"}/> : null}
+        {index==="2" ? <MemorizedConverter htmlFor1="km" text1="Km" id1="km" placeholder1="Km" value1={flipped? (state/0.6214).toFixed(4) : state} htmlFor2="miles" text2="Miles" id2="miles" placeholder2="Miles" value2={flipped? state: (state*0.6214).toFixed(4)} onChangeUpdate={onChangeUpdate} onReset={onReset} onFlip={onFlip} disabled1={flipped} disabled2={!flipped} onFlipText={flipped? "Turn Back": "Flip"}/> : null}
       </div>
     </div>
   )
