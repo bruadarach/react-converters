@@ -1,13 +1,32 @@
 import React from 'react';
 import './App.css';
-// import KmToMiles from './KmToMiles';
-// import MinutesToHours from './MinutesToHours'
 import Converter from './Converter'
+import PropTypes from 'prop-types'
+
+Converter.propTypes = {
+  htmlFor1: PropTypes.string.isRequired,
+  text1: PropTypes.string.isRequired,
+  id1: PropTypes.string.isRequired,
+  placeholder1: PropTypes.string.isRequired,
+  value1: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  htmlFor2: PropTypes.string.isRequired,
+  text2: PropTypes.string.isRequired,
+  id2: PropTypes.string.isRequired,
+  placeholder2: PropTypes.string.isRequired,
+  value2: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onChangeUpdate: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+  onFlip: PropTypes.func.isRequired,
+  disabled1: PropTypes.bool.isRequired,
+  disabled2: PropTypes.bool.isRequired,
+  onFlipText: PropTypes.string.isRequired,
+}
 
 function App() {
   const [index, setIndex] = React.useState("0")
   const onChange = (event) => {
     setIndex(event.target.value);
+    onReset();
   }
 
   const [state, setState] = React.useState(0);
@@ -25,7 +44,7 @@ function App() {
     setFlipped((current) => !current);
   }
 
-  const MemorizedConverter = React.memo(Converter)
+  //const MemorizedConverter = React.memo(Converter)
 
   return(
 
@@ -42,11 +61,10 @@ function App() {
       </select>
       <div>
         {index==="0" ? "Please select your unit" : null}
-        {index==="1" ? <MemorizedConverter htmlFor1="minutes" text1="Minutes" id1="minutes" placeholder1="Minutes" value1={flipped? state*60: state} htmlFor2="hours" text2="Hours" id2="hours" placeholder2="Hours" value2={flipped? state: state/60} onChangeUpdate={onChangeUpdate} onReset={onReset} onFlip={onFlip} disabled1={flipped} disabled2={!flipped} onFlipText={flipped? "Turn Back": "Flip"}/> : null}
-        {index==="2" ? <MemorizedConverter htmlFor1="km" text1="Km" id1="km" placeholder1="Km" value1={flipped? (state/0.6214).toFixed(4) : state} htmlFor2="miles" text2="Miles" id2="miles" placeholder2="Miles" value2={flipped? state: (state*0.6214).toFixed(4)} onChangeUpdate={onChangeUpdate} onReset={onReset} onFlip={onFlip} disabled1={flipped} disabled2={!flipped} onFlipText={flipped? "Turn Back": "Flip"}/> : null}
+        {index==="1" ? <Converter htmlFor1="minutes" text1="Minutes" id1="minutes" placeholder1="Minutes" value1={flipped? state*60: state} htmlFor2="hours" text2="Hours" id2="hours" placeholder2="Hours" value2={flipped? state: state/60} onChangeUpdate={onChangeUpdate} onReset={onReset} onFlip={onFlip} disabled1={flipped} disabled2={!flipped} onFlipText={flipped? "Turn Back": "Flip"}/> : null}
+        {index==="2" ? <Converter htmlFor1="km" text1="Km" id1="km" placeholder1="Km" value1={flipped? (state/0.6214).toFixed(4) : state} htmlFor2="miles" text2="Miles" id2="miles" placeholder2="Miles" value2={flipped? state: (state*0.6214).toFixed(4)} onChangeUpdate={onChangeUpdate} onReset={onReset} onFlip={onFlip} disabled1={flipped} disabled2={!flipped} onFlipText={flipped? "Turn Back": "Flip"}/> : null}
       </div>
     </div>
   )
 }
-
 export default App;
